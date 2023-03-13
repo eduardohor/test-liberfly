@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         return [
 					'name' => 'string|required|min:3',
 					'email' => 'email|required|unique:users', 
-					'password' => 'string|required|min:5' 
+					'password' => 'required|min:6|confirmed' 
         ];
     }
 }

@@ -19,8 +19,10 @@ class AuthController extends Controller
 			'password' => Hash::make($request->password)
 		]);
 
-		return $user;
-
+		return response()->json([
+			'message' => 'User created successfully!',
+			'user' => $user
+		], 201);
 	}
 
 	public function login(LoginRequest $request)
@@ -28,34 +30,33 @@ class AuthController extends Controller
 		$credentials = $request->all(['email', 'password']);
 
 		if (!$token = auth('api')->attempt($credentials)) {
-			return response()->json(['error' => 'Unauthorized'], 401);
+			return response()->json(['message' => 'Unauthorized'], 401);
 		}
 
 		return response()->json([
 			'access_token' => $token,
 			'token_type' => 'bearer',
 			'expires_in' => auth()->factory()->getTTL() * 60
-		]);
+		], 200);
 	}
-	
+
 	public function me()
 	{
-
-		return response()->json(auth()->user());
-
+		$user = auth()->user();
+		return response()->json(['user' => $user], 200);
 	}
 
 	public function refresh()
 	{
 		$token = auth('api')->refresh();
 
-		return response()->json(['token' => $token]);
+		return response()->json(['token' => $token], 204);
 	}
 
 	public function logout()
 	{
 		auth('api')->logout();
 
-		return response()->json(['message' => 'Logout success!']);
+		return response()->json(['message' => 'Logout success!'], 200);
 	}
 }

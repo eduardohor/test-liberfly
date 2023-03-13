@@ -17,7 +17,7 @@ class UserController extends Controller
 	{
 		$users = $this->user->orderByDesc('created_at')->get();
 
-		return $users;
+		return response()->json($users, 200);
 	}
 
 	public function show($id)
@@ -26,6 +26,6 @@ class UserController extends Controller
 			return response()->json(['message' => 'Usuário não encontrado!'], 404);
 		}
 
-		return $user;
+		return response()->json(['user' => $user], 200);
 	}
 }
