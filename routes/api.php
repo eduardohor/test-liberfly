@@ -22,7 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('login' , [AuthController::class, 'login']);
 
 Route::middleware('jwt.auth')->group(function(){
-	Route::get('me' , [AuthController::class, 'me']);
+	Route::post('me' , [AuthController::class, 'me']);
+	Route::post('refresh' , [AuthController::class, 'refresh']);
 
 });
 
