@@ -20,6 +20,7 @@ Route::post('login' , [AuthController::class, 'login']);
 Route::middleware('jwt.auth')->group(function(){
 	Route::post('me' , [AuthController::class, 'me']);
 	Route::post('refresh' , [AuthController::class, 'refresh']);
+	Route::post('logout' , [AuthController::class, 'logout']);
 
 });
 
