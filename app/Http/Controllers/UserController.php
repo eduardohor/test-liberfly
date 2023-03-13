@@ -4,6 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
+/**
+ * @OA\Info(
+ *   title="API Test Liberfly",
+ *   version="1.0.0",
+ *   contact={
+ *     "email": "eduardo.hor@outlook.com"
+ *   }
+ * )
+ * @OA\SecurityScheme(
+ *  type="http",
+ *  description="Acess token obtido na autenticação",
+ *  name="Authorization",
+ *  in="header",
+ *  scheme="bearer",
+ *  bearerFormat="JWT",
+ *  securityScheme="bearerToken"
+ * )
+ */
 class UserController extends Controller
 {
 	private $user;
