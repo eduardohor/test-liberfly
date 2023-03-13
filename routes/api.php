@@ -20,8 +20,8 @@ Route::post('login' , [AuthController::class, 'login']);
 
 Route::middleware('jwt.auth')->group(function(){
 	Route::get('me' , [AuthController::class, 'me']);
-	Route::post('refresh' , [AuthController::class, 'refresh']);
-	Route::post('logout' , [AuthController::class, 'logout']);
+	Route::get('refresh' , [AuthController::class, 'refresh']);
+	Route::get('logout' , [AuthController::class, 'logout']);
 
 	Route::get('users', [UserController::class, 'index']);
 	Route::get('users/{id}', [UserController::class, 'show']);

@@ -147,12 +147,29 @@ class AuthController extends Controller
 		return response()->json(['user' => $user], 200);
 	}
 
-	public function refresh()
-	{
-		$token = auth('api')->refresh();
-
-		return response()->json(['token' => $token], 204);
-	}
+	/**
+	 * @OA\GET(
+	 *  tags={"JWT Authentication"},
+	 *  summary="Revoke all user tokens",
+	 *  description="This endpoint provides a logout for user, revoking all actived user tokens.",
+	 *  path="/api/logout",
+	 *  security={ {"bearerToken":{}} },
+	 *  @OA\Response(
+	 *    response=200,
+	 *    description="All user tokens revoked",
+	 *    @OA\JsonContent(
+	 *       @OA\Property(property="message", type="string", example="Logout success!")
+	 *    )
+	 *  ),
+	 *  @OA\Response(
+	 *    response=401,
+	 *    description="Unauthenticated",
+	 *    @OA\JsonContent(
+	 *       @OA\Property(property="message", type="string", example="The token has been blacklisted"),
+	 *    )
+	 *  )
+	 * )
+	 */
 
 	public function logout()
 	{
