@@ -25,7 +25,7 @@ composer install
 
 - Duplicar o arquivo **.env.example** e renomear a copia para **.env**
 ```sh
-  cp .env.example .env
+cp .env.example .env
 ```
 
 - Alterar os dados de banco no arquivo .env para os referente ao seu banco local
